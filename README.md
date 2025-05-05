@@ -1,19 +1,58 @@
-# RestAssured
+# 🧪 Testes Automatizados de API – CRUD Naruto com Rest Assured e Cucumber
+
+Este projeto tem como objetivo validar as funcionalidades de uma API REST  do universo Naruto, utilizando **Rest Assured** para interações HTTP e **Cucumber** para testes BDD.
+
+## 📚 Tecnologias Utilizadas
+
+- [Rest Assured](https://rest-assured.io/) – Testes de APIs REST em Java
+- [Cucumber](https://cucumber.io/) – BDD (Behavior Driven Development)
+- [JUnit](https://junit.org/) – Executor de testes
+- [Maven](https://maven.apache.org/) – Gerenciador de dependências
+
+## 🧭 Fluxo dos Testes Automatizado
+
+Este projeto segue um fluxo dividido em etapas para garantir testes organizados e eficientes usando Cucumber + Rest Assured.
+
+---
+
+### ✅ 1. Entender o que a API faz e o que o negócio espera
+
+> Esta etapa já foi concluída e documentada na seção principal do projeto.
+
+🔗 Consulte os detalhes da API aqui: [CRUD Naruto - Documentação da API](https://github.com/DannyCMMarques/Crud-Desafio-Ninja)
+
+---
+
+### ✅ 2. Listar funcionalidades e aplicar a priorização de testes (Pirâmide)
+
+Abaixo estão listadas as principais funcionalidades da API com seus respectivos tipos de teste e prioridades definidas com base no impacto e criticidade:
+
+| Categoria           | Funcionalidade                           | Tipo de Teste | Prioridade | Justificativa                                                                                             |
+|---------------------|-------------------------------------------|----------------|------------|-----------------------------------------------------------------------------------------------------------|
+| Personagens         | Criar personagem (POST)                   |                | Média       | Fluxo não essencial, pois o usuário ainda pode utilizar personagens previamente cadastrados.              |
+| Personagens         | Listar personagens (GET)                  |                | Alta        | Essencial para exibir todos os personagens e permitir ao usuário escolher um para utilizar em batalha.    |
+| Batalha             | Cadastrar batalha (POST)                  |                | Alta        | Operação chave do sistema de combate.                                                                     |
+| ParticipanteBatalha | Cadastrar participante (POST)             |                | Alta        | O participante é peça central para que uma batalha aconteça.                                              |
+| Usuários            | Cadastrar usuário (POST /usuarios/registro)|                | Alta        | A criação de contas é essencial para permitir novos acessos ao sistema.                                   |
+| Login               | Autenticar usuário (POST /login)          |                | Alta        | A autenticação é obrigatória para o acesso ao sistema.                                                    |
 
 
-# Quais são os principais tipos de teste de software?
-A depender do contexto e da preferência do profissional ou da empresa, há diversos tipos de testes de software para serem executados:
+---
 
-- Teste da caixa branca – avalia a estrutura interna do código-fonte, por meio de testes dos caminhos de execução específicos, que garantem que todas as instruções sejam executadas corretamente. 
--  Teste da caixa preta – examina o software apenas com base em sua interface externa, sem considerar a sua estrutura interna. Os testes são fundamentados nos requisitos e nas funcionalidades esperadas pelo usuário.
--  Teste da caixa cinza – combina elementos do teste da caixa branca e da caixa preta, em que parte do conhecimento interno do sistema é utilizado, mas também se concentra na funcionalidade externa.
--  Teste de regressão – verifica se as alterações recentes no código afetaram negativamente o funcionamento das funcionalidades existentes. Geralmente, é automatizado para garantir que as correções ou novos recursos não insiram bugs no software existente.
--  Teste de unidade – estuda unidades individuais de código isoladamente para garantir que cada parte do software funcione conforme o esperado.
-- Teste de integração – avalia a interação entre diferentes partes do sistema para garantir que elas funcionem em conjunto, de maneira integrada e sem problemas.
-- Teste de carga – verifica o desempenho do software sob condições de carga máxima (ou o mais próximo disso), observando como ele se comporta quando submetido a um grande volume de dados ou usuários simultâneos.
-- Teste de usabilidade – avalia a facilidade de uso e a experiência do usuário do software, garantindo que seja intuitiva e eficiente para os usuários finais.
-- Teste de estresse –tests the limits of software by subjecting it to extreme conditions or conditions beyond normal specifications to assess its stability and resilience. testa os limites do software, submetendo-o a condições extremas ou além das especificações normais, para avaliar sua estabilidade e capacidade de recuperação.
-# Testes de software: tipos, níveis e técnicas
+> Próximo passo: criação dos arquivos `.feature` com os cenários de teste.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ![alt text](image.png)
 
@@ -25,23 +64,6 @@ A pirâmide de testes é uma ilustração que permite visualizar de forma simple
 ![alt text](image-2.png)
 
 ![alt text](image-3.png)
-
-
-# Testes de API 
-  
-  ### Tipos de Testes 
-  - Funcional
-  - Aceitação
-  - Sanidade
-  - Contrato
-  - Saúde dos endpoints
-
-  -  escolha dos testes automatizados candidatos, ou seja, os mais críticos, deve ser realizada com base no contexto do projeto de automação. No entanto, apesar de não existir uma categorização amplamente difundida, a experiência tem mostrado que os testes candidatos são normalmente agrupados em quatro áreas distintas:
-
-Smoke Tests: Um conjunto mínimo de testes é selecionado com o objetivo de validar um Build ou liberação antes do início de um ciclo de testes;
-Testes de Regressão: Os testes são selecionados com o objetivo de executar o re-teste de uma funcionalidade ou da aplicação inteira;
-Funcionalidades Críticas: Os testes são selecionados com o objetivo de validar as funcionalidades críticas que podem trazer riscos ao negócio;
-Tarefas Repetitivas: Os testes são selecionados com o objetivo de reduzir o envolvimento dos testadores em atividades manuais repetitivas e suscetíveis a erros, tais como cálculos matemáticos, simulações, processamentos, comparações de arquivos ou dados, etc.
 
 
 
