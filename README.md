@@ -50,6 +50,7 @@ Tarefas Repetitivas: Os testes são selecionados com o objetivo de reduzir o env
 ![image](https://github.com/user-attachments/assets/c45a75a5-bc70-41fc-802d-91b3d611d8fa)
 Behavior Driven Development (Desenvolvimento Orientado a Comportamento)
 É uma abordagem de desenvolvimento e testes que:
+![image](https://github.com/user-attachments/assets/aee8a05c-9002-4e77-af43-c56d7f13a2ec)
 
 ✅ Foca no comportamento esperado do sistema, do ponto de vista do usuário (não da implementação técnica)
 ✅ Usa uma linguagem comum entre desenvolvedores, testers e área de negócio
