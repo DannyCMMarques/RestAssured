@@ -1,4 +1,5 @@
 # language: pt
+@login
 Funcionalidade: Autenticação de usuários
 
     #   --POST/LOGIN--

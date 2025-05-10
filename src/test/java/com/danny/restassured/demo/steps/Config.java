@@ -12,14 +12,6 @@ import io.restassured.http.ContentType;
 
 public class Config {
 
-    // private final UserApi userApi;
-    // private final PetApi petApi;
-
-    // public Config() {
-    // this.userApi = new UserApi();
-    // this.petApi = new PetApi();
-    // }
-
     @Before
     public void setup() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -30,19 +22,10 @@ public class Config {
         RestAssured.basePath = properties.basePath();
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
-                .addHeader("Authorization", getToken())
-                .setContentType(ContentType.JSON)
-                .addFilter(new RequestLoggingFilter())
-                .addFilter(new ResponseLoggingFilter())
-                .build();
+        .setContentType(ContentType.JSON)
+        .addFilter(new RequestLoggingFilter())
+        .addFilter(new ResponseLoggingFilter())
+        .build();
     }
 
-    private String getToken() {
-        return "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImNyZWF0ZWRfYXQiOjE3NDY2NDM3ODQzNTIsInN1YiI6ImpvYW8uc2lsdmFAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDY2NDM3ODQsImV4cCI6MTc0NjczMDE4NH0.Zx84PRPH9WayfAwp1mayCsf56IpCczaqbmI5Opq80hg";
-    }
-
-    // @After("@deleteAllUsers")
-    // public void deleteAllUsers() {
-    // userApi.deleteAllUsers();
-    // }
 }

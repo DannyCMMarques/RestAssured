@@ -1,4 +1,4 @@
-package com.danny.restassured.demo.support.domain;
+package com.danny.restassured.demo.support.domain.personagem;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +9,10 @@ import lombok.Data;
 public class PersonagemRequest {
  
     @Builder.Default
-    private String nome = "Naruto Uzumaki" ;
+    private String nome = "Tsunade";
 
     @Builder.Default
-    private Long idade = 16L;
+    private Long idade = 55L;
 
     @Builder.Default
     private String aldeia = "Konoha";
