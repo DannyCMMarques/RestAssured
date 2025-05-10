@@ -1,4 +1,4 @@
-package com.danny.restassured.demo.bdd.automation.api.support.config;
+package com.danny.restassured.demo.support.config;
 
 import org.aeonbits.owner.ConfigCache;
 
