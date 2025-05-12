@@ -70,6 +70,7 @@ public class ParticipanteBatalhaStepDefinitions {
         assertNotNull(response.jsonPath().getString("message"));
     }
 
+    
     @After
     public void limparParticipanteCriado() {
         if (participanteIdCriado != null) {
