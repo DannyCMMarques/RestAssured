@@ -1,7 +1,7 @@
 package com.danny.restassured.demo.steps.personagem;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.springframework.http.HttpStatus;
 
 import com.danny.restassured.demo.support.api.PersonagemApi;
@@ -32,7 +32,6 @@ public class PersonagemDeleteStepDefinitions {
     public void euTentoExcluirPersonagemComIdInexistente() {
         response = personagemApi.deletarPersonagem(9999L); // ID inexistente
     }
-
     @Então("a API deve retornar erro de não encontrado ao excluir")
     public void apiRetornaErroExclusao() {
         response.then().statusCode(HttpStatus.NOT_FOUND.value());
@@ -40,6 +39,7 @@ public class PersonagemDeleteStepDefinitions {
         assertNotNull(mensagem);
         assertEquals("Personagem não encontrado", mensagem);
     }
+    
 
     @Quando("eu envio uma requisição DELETE com esse ID")
     public void eu_envio_uma_requisicao_delete_com_esse_id() {

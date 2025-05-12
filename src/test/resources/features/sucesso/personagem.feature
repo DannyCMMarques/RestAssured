@@ -21,7 +21,7 @@ Funcionalidade: Operações com personagens do sistema
 # -- PUT --
 @put
    Cenário: Atualizar um personagem existente com dados válidos
-    Dado que exista um personagem salvo que eu queira atualizar personagem 
+    Dado que exista um personagem salvo que eu queira atualizar personagem
         Quando eu envio uma requisição PUT com o ID e os dados atualizados
     Então o personagem é atualizado com sucesso
 
