@@ -9,7 +9,7 @@ import lombok.Data;
 public class PersonagemRequest {
  
     @Builder.Default
-    private String nome = "Tsunade";
+    private String nome = "Tsu";
 
     @Builder.Default
     private Long idade = 55L;

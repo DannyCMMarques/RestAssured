@@ -37,7 +37,7 @@ public class BatalhaStepDefinitions {
 
     @Dado("que eu envie dados não permitidos ou malformados no corpo da requisição")
     public void queEnvieDadosInvalidos() {
-        jsonInvalido = "{ \"status\": 12345 }"; // inválido para enum
+        jsonInvalido = "{ \"status\": 12345 }";
     }
 
     @Quando("eu envio uma requisição POST vazia para o cadastro de batalha")
@@ -62,7 +62,7 @@ public class BatalhaStepDefinitions {
     @Então("a API deve retornar erro de validação para batalha")
     public void apiRetornaErroValidacao() {
         response.then().statusCode(HttpStatus.BAD_REQUEST.value());
-        String detalhe = response.jsonPath().getString("detail"); // não "message"
+        String detalhe = response.jsonPath().getString("detail");
         assertNotNull(detalhe, "Esperava 'detail' na resposta de erro.");
     }
 
