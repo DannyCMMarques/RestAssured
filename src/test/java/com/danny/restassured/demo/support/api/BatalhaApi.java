@@ -10,11 +10,12 @@ public class BatalhaApi {
     private static final String BASE_BATALHA = "/v1/batalha";
 
     public Response iniciarBatalha(BatalhaRequestDTO batalhaRequest) {
-    return RequestHelper.withAuth()
-            .body(batalhaRequest)
-            .when()
-            .post(BASE_BATALHA);
-}
+        return RequestHelper.withAuth()
+                .body(batalhaRequest)
+                .when()
+                .post(BASE_BATALHA);
+    }
+
     public Response buscarBatalhaPorId(Long batalhaId) {
         return RequestHelper.withAuth()
                 .pathParam("id", batalhaId)

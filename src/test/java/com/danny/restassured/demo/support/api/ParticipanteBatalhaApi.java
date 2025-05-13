@@ -11,28 +11,37 @@ public class ParticipanteBatalhaApi {
 
     public Response cadastrarParticipante(ParticipanteBatalhaRequestDTO dto) {
         return RequestHelper.withAuth()
-            .body(dto)
-            .when()
-            .post(BASE);
+                .body(dto)
+                .when()
+                .post(BASE);
     }
 
     public Response deletarParticipante(Long id) {
         return RequestHelper.withAuth()
-            .pathParam("id", id)
-            .when()
-            .delete(BASE + "/{id}");
+                .pathParam("id", id)
+                .when()
+                .delete(BASE + "/{id}");
     }
 
     public Response buscarParticipantePorId(Long id) {
         return RequestHelper.withAuth()
-            .pathParam("id", id)
-            .when()
-            .get(BASE + "/{id}");
+                .pathParam("id", id)
+                .when()
+                .get(BASE + "/{id}");
     }
 
     public Response listarParticipantes() {
         return RequestHelper.withAuth()
-            .when()
-            .get(BASE);
+                .when()
+                .get(BASE);
     }
+
+    public Response atualizarParticipante(Long id, ParticipanteBatalhaRequestDTO dto) {
+        return RequestHelper.withAuth()
+                .pathParam("id", id)
+                .body(dto)
+                .when()
+                .put(BASE + "/{id}");
+    }
+
 }

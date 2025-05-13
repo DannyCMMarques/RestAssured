@@ -42,7 +42,6 @@ public class LoginStepDefinitions {
 
     @Então("a API deve retornar erro de autenticação")
     public void apiDeveRetornarErroDeAutenticacao() {
-        // API não retorna body em caso de credenciais inválidas, apenas 401 Unauthorized
         response.then().statusCode(HttpStatus.UNAUTHORIZED.value());
     }
 }

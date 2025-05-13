@@ -70,7 +70,48 @@ public class ParticipanteBatalhaStepDefinitions {
         assertNotNull(response.jsonPath().getString("message"));
     }
 
-    
+    @Dado("que exista um participante previamente cadastrado")
+    public void existeParticipante() {
+        request = ParticipanteBatalhaRequestDTO.builder().build();
+        response = api.cadastrarParticipante(request);
+        response.then().statusCode(HttpStatus.CREATED.value());
+        participanteIdCriado = response.jsonPath().getLong("id");
+    }
+
+    @Dado("que o ID 9999 não esteja associado a nenhum participante")
+    public void idParticipanteInexistente() {
+    }
+
+    @Quando("eu envio uma requisição GET para buscar o participante por ID")
+    public void envioGetPorId() {
+        Long id = participanteIdCriado != null ? participanteIdCriado : 9999L;
+        response = api.buscarParticipantePorId(id);
+    }
+
+    @Então("os dados do participante são retornados com sucesso")
+    public void dadosParticipanteRetornados() {
+        response.then().statusCode(HttpStatus.OK.value());
+        assertEquals(request.getNomeUsuario(),
+                response.jsonPath().getString("nomeUsuario"));
+    }
+
+    @Então("a API deve retornar erro de participante não encontrado")
+    public void erroParticipanteNaoEncontrado() {
+        response.then().statusCode(HttpStatus.NOT_FOUND.value());
+    }
+
+    @Quando("eu envio uma requisição DELETE para excluir o participante")
+    public void envioDelete() {
+        Long id = participanteIdCriado != null ? participanteIdCriado : 9999L;
+        response = api.deletarParticipante(id);
+    }
+
+    @Então("o participante é excluído com sucesso")
+    public void participanteExcluido() {
+        response.then().statusCode(HttpStatus.NO_CONTENT.value());
+        participanteIdCriado = null;
+    }
+
     @After
     public void limparParticipanteCriado() {
         if (participanteIdCriado != null) {

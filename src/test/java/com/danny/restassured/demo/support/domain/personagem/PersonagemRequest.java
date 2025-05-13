@@ -3,11 +3,10 @@ package com.danny.restassured.demo.support.domain.personagem;
 import lombok.Builder;
 import lombok.Data;
 
-
 @Data
 @Builder
 public class PersonagemRequest {
- 
+
     @Builder.Default
     private String nome = "Tsu";
 
@@ -18,6 +17,6 @@ public class PersonagemRequest {
     private String aldeia = "Konoha";
 
     @Builder.Default
-    private String especialidade ="NINJUTSU";
+    private String especialidade = "NINJUTSU";
 
 }
