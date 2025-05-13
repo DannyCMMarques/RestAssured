@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.http.HttpStatus;
 
 import com.danny.restassured.demo.support.api.PersonagemApi;
-import com.danny.restassured.demo.support.config.helper.RequestHelper;
 import com.danny.restassured.demo.support.domain.personagem.PersonagemRequest;
 
 import io.cucumber.java.After;
@@ -21,18 +20,16 @@ public class PersonagemPostStepDefinitions {
     public PersonagemPostStepDefinitions(PersonagemApi personagemApi) {
         this.personagemApi = personagemApi;
     }
+
     private PersonagemRequest personagemEsperado;
     private Response response;
     private Long personagemIdCriado;
-    private Long personagemIdParaBusca;
-
 
     @Dado("que eu possua um nome, idade, aldeia e especialidade para o personagem")
     public void queEuPossuaUmNomeIdadeAldeiaESpecialidadeParaOPersonagem() {
 
         personagemEsperado = PersonagemRequest.builder().build();
     }
-
 
     @Então("o personagem é criado com sucesso")
     public void oPersonagemECriadoComSucesso() {
@@ -60,11 +57,9 @@ public class PersonagemPostStepDefinitions {
         assertFalse(detail.isEmpty(), "Esperava mensagem de erro de validação, mas veio vazia");
     }
 
-
     @Quando("eu envio uma requisição POST para criar o personagem")
     public void euEnvioUmaRequisicaoPOSTParaCriarOPersonagem() {
         response = personagemApi.criarPersonagem(personagemEsperado);
-        // armazena o ID criado para limpeza posterior
         if (response.statusCode() == HttpStatus.CREATED.value()) {
             personagemIdCriado = response.jsonPath().getLong("id");
         }
@@ -76,7 +71,5 @@ public class PersonagemPostStepDefinitions {
             personagemApi.deletarPersonagem(personagemIdCriado);
         }
     }
-
-
 
 }

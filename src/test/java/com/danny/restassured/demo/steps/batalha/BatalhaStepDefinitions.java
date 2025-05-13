@@ -1,4 +1,4 @@
-package com.danny.restassured.demo.steps;
+package com.danny.restassured.demo.steps.batalha;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,11 +28,11 @@ public class BatalhaStepDefinitions {
     @Dado("que o sistema é responsável por preencher os dados da batalha")
     public void queSistemaPreencheAutomaticamente() {
         batalhaRequest = BatalhaRequestDTO.builder()
-        .criadoEm(null)
-        .finalizadoEm(null)
-        .status(null)
-        .build();   
-    
+                .criadoEm(null)
+                .finalizadoEm(null)
+                .status(null)
+                .build();
+
     }
 
     @Dado("que eu envie dados não permitidos ou malformados no corpo da requisição")
@@ -59,6 +59,7 @@ public class BatalhaStepDefinitions {
         assertEquals("NAO_INICIADA", response.jsonPath().getString("status"));
         assertNotNull(response.jsonPath().getString("criadoEm"));
     }
+
     @Então("a API deve retornar erro de validação para batalha")
     public void apiRetornaErroValidacao() {
         response.then().statusCode(HttpStatus.BAD_REQUEST.value());
@@ -66,5 +67,4 @@ public class BatalhaStepDefinitions {
         assertNotNull(detalhe, "Esperava 'detail' na resposta de erro.");
     }
 
-    
 }

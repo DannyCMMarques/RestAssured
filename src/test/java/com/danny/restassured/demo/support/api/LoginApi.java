@@ -6,19 +6,17 @@ import com.danny.restassured.demo.support.domain.LoginRequest;
 
 import io.restassured.response.Response;
 
-
 public class LoginApi {
- private static final String LOGIN_ENDPOINT = "/v1/login"; // ajuste se necessário
+        private static final String LOGIN_ENDPOINT = "/v1/login"; 
 
-    public static Response autenticar(LoginRequest login) {
+        public static Response autenticar(LoginRequest login) {
 
-        return given()
-                .contentType("application/json")
-                .body(login)
-        .when()
-                .post(LOGIN_ENDPOINT);
-        
-    }
+                return given()
+                                .contentType("application/json")
+                                .body(login)
+                                .when()
+                                .post(LOGIN_ENDPOINT);
 
-    
+        }
+
 }

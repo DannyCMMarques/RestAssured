@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ParticipanteBatalhaRequestDTO {
-   
+
     @Builder.Default
     private Long batalha = 1L;
 
@@ -14,7 +14,7 @@ public class ParticipanteBatalhaRequestDTO {
     private String nomeUsuario = "João Silva";
 
     @Builder.Default
-    private String personagem = "Naruto Uzumaki" ;
+    private String personagem = "Naruto Uzumaki";
 
     @Builder.Default
     private Integer playerOrder = 1;

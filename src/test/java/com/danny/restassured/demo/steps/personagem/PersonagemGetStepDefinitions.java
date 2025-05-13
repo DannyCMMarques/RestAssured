@@ -26,7 +26,6 @@ public class PersonagemGetStepDefinitions {
     private Long personagemIdCriado;
     private Long personagemIdParaBusca;
 
-    
     @Dado("que exista um personagem salvo com ID {long}")
     public void dadoQueExistaUmPersonagemSalvoComID(Long id) {
         personagemIdParaBusca = id;
@@ -56,54 +55,50 @@ public class PersonagemGetStepDefinitions {
         assertEquals("Personagem não encontrado", message);
     }
 
-
-
     @Quando("eu envio uma requisição GET para listar os personagens")
-public void euEnvioUmaRequisicaoGETParaListarOsPersonagens() {
-    response = personagemApi.buscarTodosPersonagens();
-}
-
-@Então("a API retorna a lista de personagens")
-public void apiRetornaListaDePersonagens() {
-    response.then().statusCode(HttpStatus.OK.value());
-    assertNotNull(response.jsonPath().getList("content"));
-}
-
-
-
-
-@Quando("eu envio uma requisição GET para listar personagens com parâmetros inválidos")
-public void euEnvioGetComParametrosInvalidos() {
-    response = RequestHelper.withAuth()
-        .queryParam("page", -1) 
-        .queryParam("size", 0)  // Tamanho zero
-        .when()
-        .get("/v1/personagens");
-}
-
-@Então("a API deve retornar erro de requisição inválida")
-public void apiRetornaErroListagem() {
-    response.then().statusCode(HttpStatus.BAD_REQUEST.value());
-}
-@Dado("que existam personagens salvos no sistema")
-public void que_existam_personagens_salvos_no_sistema() {
-    // Cria um personagem para garantir que a listagem tenha pelo menos um resultado
-    personagemEsperado = PersonagemRequest.builder().nome("Personagem Teste").build();
-    response = personagemApi.criarPersonagem(personagemEsperado);
-    
-    // Armazena o ID para limpeza posterior, se necessário
-    if (response.statusCode() == HttpStatus.CREATED.value()) {
-        personagemIdCriado = response.jsonPath().getLong("id");
+    public void euEnvioUmaRequisicaoGETParaListarOsPersonagens() {
+        response = personagemApi.buscarTodosPersonagens();
     }
 
-    assertEquals(HttpStatus.CREATED.value(), response.statusCode());
-}
-@Então("a API deve retornar a lista de personagens com sucesso")
-public void a_api_deve_retornar_a_lista_de_personagens_com_sucesso() {
-    response.then().statusCode(HttpStatus.OK.value());
-    assertNotNull(response.jsonPath().getList("content"));
-}
- @After
+    @Então("a API retorna a lista de personagens")
+    public void apiRetornaListaDePersonagens() {
+        response.then().statusCode(HttpStatus.OK.value());
+        assertNotNull(response.jsonPath().getList("content"));
+    }
+
+    @Quando("eu envio uma requisição GET para listar personagens com parâmetros inválidos")
+    public void euEnvioGetComParametrosInvalidos() {
+        response = RequestHelper.withAuth()
+                .queryParam("page", -1)
+                .queryParam("size", 0)
+                .when()
+                .get("/v1/personagens");
+    }
+
+    @Então("a API deve retornar erro de requisição inválida")
+    public void apiRetornaErroListagem() {
+        response.then().statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Dado("que existam personagens salvos no sistema")
+    public void que_existam_personagens_salvos_no_sistema() {
+        personagemEsperado = PersonagemRequest.builder().nome("Personagem Teste").build();
+        response = personagemApi.criarPersonagem(personagemEsperado);
+
+        if (response.statusCode() == HttpStatus.CREATED.value()) {
+            personagemIdCriado = response.jsonPath().getLong("id");
+        }
+
+        assertEquals(HttpStatus.CREATED.value(), response.statusCode());
+    }
+
+    @Então("a API deve retornar a lista de personagens com sucesso")
+    public void a_api_deve_retornar_a_lista_de_personagens_com_sucesso() {
+        response.then().statusCode(HttpStatus.OK.value());
+        assertNotNull(response.jsonPath().getList("content"));
+    }
+
+    @After
     public void apagarPersonagemCriado() {
         if (personagemIdCriado != null) {
             personagemApi.deletarPersonagem(personagemIdCriado);

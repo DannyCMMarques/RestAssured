@@ -2,7 +2,6 @@
 @login
 Funcionalidade: Autenticação de usuários
 
-    #   --POST/LOGIN--
   Cenário: Login com credenciais válidas
     Dado que eu possua um e-mail e senha válidos
     Quando eu envio uma requisição POST para o login

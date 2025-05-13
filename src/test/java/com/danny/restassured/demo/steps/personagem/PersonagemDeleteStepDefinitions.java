@@ -1,7 +1,7 @@
 package com.danny.restassured.demo.steps.personagem;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.springframework.http.HttpStatus;
 
 import com.danny.restassured.demo.support.api.PersonagemApi;
@@ -30,8 +30,9 @@ public class PersonagemDeleteStepDefinitions {
 
     @Quando("eu tento excluir um personagem com ID inexistente")
     public void euTentoExcluirPersonagemComIdInexistente() {
-        response = personagemApi.deletarPersonagem(9999L); // ID inexistente
+        response = personagemApi.deletarPersonagem(9999L);
     }
+
     @Então("a API deve retornar erro de não encontrado ao excluir")
     public void apiRetornaErroExclusao() {
         response.then().statusCode(HttpStatus.NOT_FOUND.value());
@@ -39,7 +40,6 @@ public class PersonagemDeleteStepDefinitions {
         assertNotNull(mensagem);
         assertEquals("Personagem não encontrado", mensagem);
     }
-    
 
     @Quando("eu envio uma requisição DELETE com esse ID")
     public void eu_envio_uma_requisicao_delete_com_esse_id() {
@@ -54,19 +54,18 @@ public class PersonagemDeleteStepDefinitions {
     @Dado("que exista um personagem salvo para exclusão")
     public void que_exista_um_personagem_salvo_para_exclusao() {
         String nomeUnico = "PersonagemExcluir" + System.currentTimeMillis();
-    
+
         personagemEsperado = PersonagemRequest.builder()
                 .nome(nomeUnico)
                 .idade(18L)
                 .aldeia("Areia")
                 .especialidade("TAIJUTSU")
                 .build();
-    
+
         Response responseCriacao = personagemApi.criarPersonagem(personagemEsperado);
         assertEquals(HttpStatus.CREATED.value(), responseCriacao.statusCode());
-    
+
         personagemIdCriado = responseCriacao.jsonPath().getLong("id");
     }
-    
 
 }

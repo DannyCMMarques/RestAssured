@@ -22,10 +22,10 @@ public class Config {
         RestAssured.basePath = properties.basePath();
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
-        .setContentType(ContentType.JSON)
-        .addFilter(new RequestLoggingFilter())
-        .addFilter(new ResponseLoggingFilter())
-        .build();
+                .setContentType(ContentType.JSON)
+                .addFilter(new RequestLoggingFilter())
+                .addFilter(new ResponseLoggingFilter())
+                .build();
     }
 
 }

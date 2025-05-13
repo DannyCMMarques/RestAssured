@@ -23,13 +23,12 @@ public class PersonagemPutStepDefinitions {
     private PersonagemRequest personagemEsperado;
     private Response response;
     private Long personagemIdCriado;
-    private Long personagemIdParaBusca;
     private PersonagemRequest personagemInexistente;
 
     @Dado("que exista um personagem salvo que eu queira atualizar personagem")
     public void que_eu_tenha_novos_dados_válidos_para_esse_personagem() {
         personagemEsperado = PersonagemRequest.builder()
-                .nome("Naruto Para atualização")    
+                .nome("Naruto Para atualização")
                 .idade(25L)
                 .aldeia("Konoha")
                 .especialidade("NINJUTSU")
@@ -40,6 +39,7 @@ public class PersonagemPutStepDefinitions {
 
         personagemIdCriado = responseCriacao.jsonPath().getLong("id");
     }
+
     @Dado("que eu tenha dados válidos para atualizar um personagem inexistente")
     public void preparar_dados_para_personagem_inexistente() {
         personagemInexistente = PersonagemRequest.builder()
@@ -49,11 +49,13 @@ public class PersonagemPutStepDefinitions {
                 .especialidade("GENJUTSU")
                 .build();
     }
+
     @Quando("eu envio uma requisição PUT com o ID e os dados atualizados")
     public void eu_envio_uma_requisição_put_com_o_id_e_os_dados_atualizados() {
-        personagemEsperado.setNome("Naruto Uzumaki Atualizado"); // <- ajuste aqui
+        personagemEsperado.setNome("Naruto Uzumaki Atualizado");
         response = personagemApi.atualizarPersonagem(personagemIdCriado, personagemEsperado);
     }
+
     @Então("o personagem é atualizado com sucesso")
     public void personagemAtualizadoComSucesso() {
         response.then().statusCode(HttpStatus.OK.value());
